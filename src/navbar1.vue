@@ -11,8 +11,8 @@
         <b-navbar-nav class="ml-auto">
 
           <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Поиск" v-model="mapSearchValue"/>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit" v-on:click="mapSearch">Найти</b-button>
+            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Поиск" v-model="mapSearchValue" v-on:input="mapSearch"/>
+            <b-button size="sm" class="my-2 my-sm-0" type="submit">Найти</b-button>
           </b-nav-form>
 
 
@@ -28,13 +28,32 @@
 <script>
 
 module.exports = {
-  data:  {
-    mapSearchValue: ''    
+  data: function() {
+    return {
+      mapSearchValue: ''
+    }
   },
   methods: {
-    mapSearch: function() {
-      console.log(mapSearchValue);
-      return false;
+    mapSearch: function(value) {
+      console.log(value);
+      var data = {
+        route(ref: 1)
+        {
+          osmId,
+          name,
+          ref,
+          way
+        }
+      }
+      this.$http.post("http://localhost/graphql", {
+        query: "{route(ref: 1) {osmId,          name,          ref,          way        }}"
+      }).then(
+        response => function() {
+          console.log(response.body);
+        },
+        response => function() {
+          console.log(response.body);
+        })
     }
   }
 }
