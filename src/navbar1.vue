@@ -35,6 +35,9 @@ module.exports = {
   },
   methods: {
     mapSearch: function(value) {
+
+      import gql from 'graphql-tag';
+
       console.log(value);
       var data = {
         route(ref: 1)
@@ -45,7 +48,7 @@ module.exports = {
           way
         }
       }
-      this.$http.post("http://localhost/graphql", {
+      this.$http.post("", {
         query: "{route(ref: 1) {osmId,          name,          ref,          way        }}"
       }).then(
         response => function() {
