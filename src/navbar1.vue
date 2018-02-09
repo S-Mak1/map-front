@@ -27,36 +27,53 @@
 
 <script>
 
-module.exports = {
+import gql from 'graphql-tag';
+
+export default {
   data: function() {
     return {
       mapSearchValue: ''
     }
   },
-  methods: {
-    mapSearch: function(value) {
-
-      import gql from 'graphql-tag';
-
-      console.log(value);
-      var data = {
-        route(ref: 1)
-        {
+  apollo: {
+    // Pages
+    route: {
+      // GraphQL Query
+      query: gql`query($ref: Int){
+        route(ref: $ref) {
           osmId,
           name,
           ref,
           way
         }
-      }
-      this.$http.post("", {
-        query: "{route(ref: 1) {osmId,          name,          ref,          way        }}"
-      }).then(
-        response => function() {
-          console.log(response.body);
+      }`,
+      // Initial variables
+      variables: {
+        ref: 1
+      },
+    },
+  },
+  methods: {
+    mapSearch: function(value) {
+
+      console.log(value);
+      var parsed = parseInt(value);
+      this.$apollo.queries.route.fetchMore({
+        // New variables
+        variables: {
+          ref: parsed
         },
-        response => function() {
-          console.log(response.body);
-        })
+        // Transform the previous result with new data
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          console.log(fetchMoreResult);
+          var routeList = fetchMoreResult.route;
+          return routeList;
+        }
+      });
+      // for (var i = 0; i < routeList.length; i++) {
+      //   L.geoJSON(JSON.parse(routeList[i].way))
+      //     .addTo(this.$refs.map.mapObject);
+      // }
     }
   }
 }

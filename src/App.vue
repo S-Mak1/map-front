@@ -5,7 +5,7 @@
         <navbar1> </navbar1>
 
 
-        <v-map :zoom=14 :center="[57.943423, 55.331634]" class="h-100 w-100">
+        <v-map :zoom=14 :center="[57.943423, 55.331634]" class="h-100 w-100" ref="map">
           <v-tilelayer url="//a.tile.openstreetmap.org/{z}/{x}/{y}.png"></v-tilelayer>
         </v-map>
 
