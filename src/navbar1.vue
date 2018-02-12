@@ -35,8 +35,19 @@ export default {
       mapSearchValue: ''
     }
   },
+  updated: function() {
+    console.log('1');
+    for (var i = 0; i < this.route.length; i++) {
+      L.geoJSON(JSON.parse(this.route[i].way), {
+        style: {
+            "color": "#ff7800",
+            "weight": 5,
+            "opacity": 0.65
+        }}).addTo(this.$parent.$refs.map.mapObject);
+    }
+  },
   apollo: {
-    // Pages
+    // Route
     route: {
       // GraphQL Query
       query: gql`query($ref: Int){
@@ -66,14 +77,10 @@ export default {
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
           console.log(fetchMoreResult);
-          var routeList = fetchMoreResult.route;
+          var routeList = fetchMoreResult;
           return routeList;
         }
       });
-      // for (var i = 0; i < routeList.length; i++) {
-      //   L.geoJSON(JSON.parse(routeList[i].way))
-      //     .addTo(this.$refs.map.mapObject);
-      // }
     }
   }
 }
