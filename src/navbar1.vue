@@ -43,7 +43,9 @@ export default {
             "color": "#ff7800",
             "weight": 5,
             "opacity": 0.65
-        }}).addTo(this.$parent.$refs.map.mapObject);
+        }}
+        //@todo разобраться, почему конструкция не отображает объект на карте
+      ).addTo(this.$parent.$refs.map.mapObject);
     }
   },
   apollo: {
