@@ -27,25 +27,24 @@
 
 <script>
 
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export default {
-  data: function() {
+  data: function () {
     return {
       mapSearchValue: ''
     }
   },
-  updated: function() {
-    console.log('1');
+  updated: function () {
     for (var i = 0; i < this.route.length; i++) {
-      L.geoJSON(JSON.parse(this.route[i].way), {
-        style: {
-            "color": "#ff7800",
-            "weight": 5,
-            "opacity": 0.65
-        }}
-        //@todo разобраться, почему конструкция не отображает объект на карте
-      ).addTo(this.$parent.$refs.map.mapObject);
+      // L.geoJSON(JSON.parse(this.route[i].way), {
+      //   style: {
+      //     'color': '#ff7800',
+      //     'weight': 5,
+      //     'opacity': 0.65
+      //   }}
+//      @todo разобраться, почему конструкция не отображает объект на карте
+      // ).addTo(this.$parent.$refs.map.mapObject)
     }
   },
   apollo: {
@@ -63,14 +62,12 @@ export default {
       // Initial variables
       variables: {
         ref: 1
-      },
-    },
+      }
+    }
   },
   methods: {
-    mapSearch: function(value) {
-
-      console.log(value);
-      var parsed = parseInt(value);
+    mapSearch: function (value) {
+      var parsed = parseInt(value)
       this.$apollo.queries.route.fetchMore({
         // New variables
         variables: {
@@ -78,11 +75,10 @@ export default {
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          console.log(fetchMoreResult);
-          var routeList = fetchMoreResult;
-          return routeList;
+          var routeList = fetchMoreResult
+          return routeList
         }
-      });
+      })
     }
   }
 }
