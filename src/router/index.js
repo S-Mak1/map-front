@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import NavigatorPage from '@/components/NavigatorPage'
+import MapPage from '@/components/MapPage'
 
 Vue.use(Router)
 
@@ -10,7 +11,12 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
+      component: MapPage
+    },
+    {
+      path: '/site/navigator',
+      name: 'Навигатор',
+      component: NavigatorPage
     }
   ]
 })
