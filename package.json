@@ -1,7 +1,7 @@
 {
   "name": "mapfront",
-  "version": "1.0.0",
-  "description": "y",
+  "version": "0.0.1",
+  "description": "Карта-приложение к OSM",
   "author": "Vitaly Zhakov",
   "private": true,
   "scripts": {
@@ -24,7 +24,7 @@
     "vue2-leaflet": "0.0.58",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap": "^4.0.0",
     "bootstrap-vue": "latest"
   },
   "devDependencies": {

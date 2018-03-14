@@ -5,6 +5,7 @@
 
     <v-map :zoom=14 :center="[57.943423, 55.331634]" class="h-100 w-100" ref="map">
       <v-tilelayer url="//a.tile.openstreetmap.org/{z}/{x}/{y}.png"></v-tilelayer>
+      <v-geo-json :geojson="NavBar.geoData" :options="NavBar.style"></v-geo-json>
     </v-map>
     <router-view></router-view>
   </div>
@@ -13,13 +14,11 @@
 <script>
 
 import NavBar from '@/components/NavBar.vue'
-import Vue2Leaflet from 'vue2-leaflet'
 
 export default {
   name: 'app',
   components: {
-    NavBar,
-    'v-geojson-layer': Vue2Leaflet.GeoJSON
+    NavBar
   }
 }
 </script>

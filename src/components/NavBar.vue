@@ -21,8 +21,6 @@
       </b-collapse>
     </b-navbar>
 
-<!-- navbar-1.vue -->
-
 </template>
 
 <script>
@@ -32,19 +30,26 @@ import gql from 'graphql-tag'
 export default {
   data: function () {
     return {
-      mapSearchValue: ''
+      mapSearchValue: '',
+      style: {
+        'color': '#ff7800',
+        'weight': 5,
+        'opacity': 0.65
+      },
+      geoData: {}
     }
   },
   updated: function () {
+    this.geoData = this.route[0].way
     for (var i = 0; i < this.route.length; i++) {
-      // L.geoJSON(JSON.parse(this.route[i].way), {
-      //   style: {
-      //     'color': '#ff7800',
-      //     'weight': 5,
-      //     'opacity': 0.65
-      //   }}
-//      @todo разобраться, почему конструкция не отображает объект на карте
-      // ).addTo(this.$parent.$refs.map.mapObject)
+    //   L.geoJSON(JSON.parse(this.route[i].way), {
+    //     style: {
+    //       'color': '#ff7800',
+    //       'weight': 5,
+    //       'opacity': 0.65
+    //     }}
+    //  // @todo разобраться, почему конструкция не отображает объект на карте
+    //   ).addTo(this.$parent.$refs.map.mapObject)
     }
   },
   apollo: {
